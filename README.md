@@ -1,29 +1,30 @@
-Measure-DataLength.ps1
-This PowerShell script is designed to measure the data length of specific columns in a SQL Server database. It creates a DataTable object and populates it with information about the columns of a specified table in a specified database.
+# MSSQL-DBA-Tools
 
-WARNING
-DO NOT EXECUTE THIS SCRIPT ON A PRODUCTION DATABASE. THIS SCRIPT CAN AND PROBABLY WILL CAUSE LOCKING ISSUES.
+A collection of PowerShell scripts for Microsoft SQL Server DBAs.  
 
-Usage
-The script requires the following parameters:
+---
 
-$SqlFullName: The full name of the SQL Server instance. This can be a single server (e.g., 'Server1') or a server and instance (e.g., 'Server1\Instance1').
-$DbName: The name of the database.
-$Schema: The schema name of the table.
-$Table: The table name.
-The script creates a DataTable with the following columns:
+## 📦 Scripts Included
 
-schema_name
-table_name
-column_name
-column_datatype
-column_defined_max
-column_actual_max
-column_percentage_used
-The script then retrieves columns with a collation type (character columns) from the specified table and populates the DataTable with this information.
+| Script Name                              | Description                                                  |
+|------------------------------------------|--------------------------------------------------------------|
+| `Get-ParametersFromPlan.ps1`             | Parses SQL Server execution plan XML and extracts parameters |
+| `Measure-DataLength.ps1`                 | Measures the MAX lenght of character datatypes in a table    |
 
-Example
-In this example, the script will retrieve column information from the 'Countries' table in the 'Application' schema of the 'WideWorldImporters' database on the local SQL Server instance.
+*(More scripts coming soon)*
 
-Note
-This script is intended for use in a development or testing environment. It should not be used on a production database due to the potential for causing locking issues.
+---
+
+## 🔓 License
+MIT — use freely, modify as needed.
+
+## 🚀 Getting Started
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/yourusername/MSSQL-dba-tools.git
+   cd MSSQL-dba-tools
+
+## 🙋‍♂️ Questions or Feedback?
+https://www.linkedin.com/in/bart-vernaillen-25abaa83/ 

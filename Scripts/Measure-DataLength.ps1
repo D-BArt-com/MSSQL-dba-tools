@@ -3,70 +3,7 @@
 #!!!!!!!!!!!!!!!THIS SCRIPT CAN AND PROBABLY WILL CAUSE LOCKING ISSUSES!!!!!!!!!!!!!!
 #!!!!!!!!!!!!!!!-------------------------------------------------------!!!!!!!!!!!!!!
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#==================================================================================================
-#Test if the sqlserver module is installed.
-#==================================================================================================
 
-  if (Get-Module -ListAvailable -Name SqlServer) {
-      Write-Output "SqlServer module is installed."
-      return $true
-  } else {
-      Write-Output "SqlServer module is not installed."
-      return $false
-  }
-
-# Test if the sqlserver module is installed.
-if (Get-Module -ListAvailable -Name SqlServer) 
-{
-  $version = (Get-Module -ListAvailable -Name SqlServer).Version
-  if ($version.Major -ge 22) 
-  {
-      Write-Output "SqlServer module is installed and the version ($version) is 22 or higher."
-  } else 
-  {
-    Write-Output "SqlServer module is installed but the version ($version) is lower than 22. Trying to update it."
-    try 
-    {
-      Update-Module -Name SqlServer -Force -ErrorAction Stop
-      $version = (Get-Module -ListAvailable -Name SqlServer).Version
-      if ($version.Major -ge 22) 
-      {
-        Write-Output "SqlServer module is updated and the version ($version) is 22 or higher."
-      } 
-      else 
-      {
-        Write-Error "Failed to update SqlServer module to a version higher than 22."
-      }
-    } 
-    catch 
-    {
-      Write-Error "Failed to update SqlServer module."
-    }
-  }
-} 
-else 
-{
-  # Try to install the module
-  Write-Output "SqlServer module is not installed. Trying to install it."
-  try 
-  {
-    Install-Module -Name SqlServer -Force -AllowClobber -Scope CurrentUser -ErrorAction Stop
-    $version = (Get-Module -ListAvailable -Name SqlServer).Version
-    if ($version.Major -ge 22) 
-    {
-      Write-Output "SqlServer module is installed and the version ($version) is 22 or higher."
-    } 
-    else 
-    {
-      Write-Output "SqlServer module is installed but the version ($version) is lower than 22."
-    }
-  } 
-  catch 
-  {
-    Write-Error "Failed to install SqlServer module."
-    return $false
-  }
-}
 #==================================================================================================
 #Define variables.
 #==================================================================================================
